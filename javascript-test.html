@@ -1,0 +1,948 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test</title>
+</head>
+
+<body>
+<script type="text/javascript">
+
+
+//=====================Array=============
+//1========find the missing number in an array==========
+
+var arrayNumbers = [1,2,3,4,5,6,55,62];
+var count = 100;
+var missingArray = [];
+
+for (var i = 1; i <= count; i++) {
+	if(arrayNumbers.indexOf(i) == -1){
+		missingArray.push(i);
+	}
+}
+//console.log(missingArray)
+
+//2===============Find Sum And Average======
+var arraySum = [1,2,5,6,8,9];
+var sumNewArray = 0;
+var sumAvrage = arraySum.length;
+
+for(var i=0; i<arraySum.length; i++){
+	sumNewArray += parseInt(arraySum[i]);	
+}
+
+//use reduse method to add array
+arraySum.reduce(function(total , num){
+	return total+num
+})
+
+//console.log(sumNewArray);
+var avrageAll = sumNewArray/sumAvrage;
+//console.log(avrageAll)
+
+//3=============find max and min number in an Array ===========
+var totalNumbers = [1,5,8,9,6,3,7,20];
+
+//console.log(Math.max(...totalNumbers))
+//console.log(Math.min(...totalNumbers))
+//console.log(Math.max.apply(Math,totalNumbers))
+//console.log(Math.min.apply(Math,totalNumbers))
+
+//4===========Find Unique Number in an array not multiple repeat number===================
+
+var repeatArrayNumbers = [1,2,5,6,8,7,9,9,8,2,4,5,7,8,5,4,9,6,5,4,7,10,2,12,12,23,25,25,100,100,100];
+var newArrayNum = [];
+
+//=====Give all Number not repeat number=====
+//console.log([...new Set(repeatArrayNumbers)]) 
+
+//=====Method2=====
+var uniqueNumbers = function(value,index,array){
+	return array.indexOf(value) == index;
+}
+var resultUnique = repeatArrayNumbers.filter(uniqueNumbers);
+//console.log(resultUnique)
+
+
+//=====Method3=====
+for(var i = 0; i < repeatArrayNumbers.length; i++){
+	if(newArrayNum.indexOf(repeatArrayNumbers[i]) == -1){
+		newArrayNum.push(repeatArrayNumbers[i]);
+	}
+}
+console.log(newArrayNum);
+
+
+
+
+//Return repeat number only 
+var a = ["a","a","b","c","c"];
+
+a.filter(function(value,index,array){ return (array.indexOf(value) !== index )})
+
+//output [a,c]
+
+
+// Find MAx time repeat number in an array
+
+let x = [1,1,1,2,4,8,5,5,5,4,4]
+
+let maxn = Math.max(...x);
+let result = 0;
+
+for(let i =0; i<x.length; i++){
+	if(maxn == x[i]){
+		result ++
+	}
+}
+console.log(result)
+// 1
+
+
+
+//======================Find Dublicate count string number in array=============
+var ds = "my name a aa aa aa s t z z v u u u us";
+var sts = ds.split(" ");
+
+function dupliCount(arr,val){
+	var counter = 0;
+	for(var i=0;i<ds.length;i++){
+	  if(arr[i] == val){
+	    counter++;
+	  }
+	}
+return counter;
+}
+dupliCount(sts,'u')
+
+//===================convert object  to Array
+var obj = {"1":5,"2":7,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0}
+var result = Object.keys(obj).map(function(key) {
+  return [Number(key), obj[key]];
+});
+
+var finalResult = [].conact.apply([],result)
+
+console.log(finalResult);
+
+//output [1,5]
+//output [2,7] like that
+
+
+var obj = {"1":5,"2":7,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0};
+var res = Object.entries(obj).map((value)=>(value));
+console.log(res);
+
+
+//Conver Object to array==============
+let x = {a:1,b:2}
+
+let xarr =[];
+for(let i in x){
+	xarr.push(x[i])
+}
+
+//console.log(xarr)
+//[1, 2]
+
+//====================Convert Array into object==============
+Object.assign({}, ['a','b','c']); // {0:"a", 1:"b", 2:"c"}
+
+
+//===================how to compare two objects in javascript==============
+JSON.stringify(obj1) === JSON.stringify(obj2) 
+
+
+//Conver string into array as reverse=====
+var somedata = "hello";
+var revy = "olleh"
+var r = somedata.split('').reverse().join('');
+console.log(r === revy)
+// true
+
+
+//Pass by Refrence
+var ref = { value: 1 };
+function Foo(x) {
+    x.value++;
+}
+Foo(ref);
+alert(ref.value); // Alert: 3
+
+
+//Deep copy and shallow copy in javascript=========
+//Deep copy means copies all values or properties recursively in the new object 
+//whereas shallow copy copies only the reference. ... In a deep copy, original objects do not share the same properties with new object 
+
+var obj1 = {id : 1,name:'rk'};
+//console.log(obj1);
+var newObj = JSON.parse(JSON.stringify(obj1));
+console.log(newObj);
+
+newObj.name = 'prem';
+console.log(obj1);
+console.log(newObj) ;
+
+//Result
+//{id: 1, name: "rk"}
+//{id: 1, name: "rk"}
+//{id: 1, name: "prem"}
+
+//Object.assign method
+const obj1 = {a:1, b:2};
+const obj1Copy = Object.assign(obj1);
+
+//==================Javascript method chaning
+var gmap = function() {
+    this.add = function() {
+       alert('add');
+       return this;
+    }
+
+    this.del = function() {
+       alert('delete');
+       return this;
+    }
+
+    if (this instanceof gmap) {
+        return this.gmap;
+    } else {
+        return new gmap();
+    }
+}
+var test = new gmap();
+test.add().del()
+
+
+//===========================Greatest Second number in an array=========
+var secondMax = function (){ 
+    var arr = [20, 109, 111, 215, 54, 78]; 
+    var firstMax = Math.max.apply(null, arr); 
+    arr.splice(arr.indexOf(firstMax),1); 
+    return Math.max.apply(null, arr); 
+};
+console.log(secondMax())
+
+//new array
+var person = [];
+person[0] = "John";
+
+//new array
+var cars = new Array("Saab", "Volvo", "BMW");
+
+//=======Length of a JavaScript object======
+var myObject = new Object();
+myObject["firstname"] = "Gareth";
+myObject["lastname"] = "Simpson";
+myObject["age"] = 21;
+
+
+Object = function(obj) {
+    var size = 0,
+    	key;
+
+    for (key in obj) {
+        if (obj.hasOwnProperty(key))
+         size++;
+    }
+    return size;
+};
+
+// Get the size of an object
+var size = Object(myObject);
+//console.log(size) output 3
+
+//Note : Oject.freeze not allow to add any property or change the value in an object
+//Exmaple:
+const object1 = {
+  property1: 42
+};
+
+const object2 = Object.freeze(object1);
+
+object2.property1 = 33;
+// Throws an error in strict mode
+
+console.log(object2.property1);
+// expected output: 42
+
+
+//note object.seal not allow to add any property cannot delete when sealed in an object but it change the value
+
+
+//=================Pass by value and pass by refrences=======
+  
+var a = 1;
+
+let change = (value) = >{
+	value = 2;
+}
+
+change(a);
+console.log(a); //1
+//in javascript always pass by refrences
+//example:
+
+var a = {num:1};
+
+let change = (val) => {
+	val = {};
+}
+
+change(a);
+console.log(a); //1
+
+//example2
+
+var a = {num:1};
+
+let change = (val) => {
+	val.num = 2
+}
+
+change(a);
+console.log(a); //2
+
+//=============================Closer=====
+
+var addTo = function(pass){
+	var add = function(inner){
+		return pass + inner;
+	};
+	return add;
+}
+console.log(addTo(4))
+
+var one = new addTo(4);
+
+
+//==========Call apply Bind===
+var obj = {num:1};
+
+var newFun = function(a){
+	return this.num + a;
+}
+
+var result = newFun.call(obj,4)
+console.log(result) //5
+
+ 
+ //========Apply
+
+ var obj = {num:1};
+
+var newFun = function(a,b,c,d){
+	return this.num + a + b + c + d;
+}
+
+var as = [1,2,3,4]
+
+console.log(newFun.apply(obj,as))
+
+//=======Bind
+//Bind is an same as call and apply but difference is that bind is a async function so before execution to save as variable
+
+//==========Prototype Inheritance
+
+let mammal = function(legs){
+	this.legs = legs;
+};
+mammal.prototype = {
+	walk(){
+		return 'Walking';
+	},
+	sleep(){
+		return 'sleeping!'
+	}
+};
+
+let Bat = function(legs,vegetarians){
+	mammal.call(this,legs);
+	this.vegetarians = vegetarians
+}
+Bat.prototype = object.create(mammal.prototype);
+Bat.prototype.constructor = Bat;
+
+var BatData = new Bat(4,true)
+
+console.log(BatData)
+
+
+
+
+
+
+
+//resolve example======
+
+function resolveAfter2Seconds() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('resolved');
+    }, 2000);
+  });
+}
+
+async function asyncCall() {
+  console.log('calling');
+  var result = await resolveAfter2Seconds();
+  console.log(result);
+  // expected output: 'resolved'
+}
+
+asyncCall();
+
+// "calling"
+//"resolved" alter 2 second display
+
+
+
+
+
+let roomClean = new Promise(function(resolve,reject){
+	let isClean = true
+	if(isClean){
+		resolve("resolve");
+	}else{
+		reject("reject");
+	}
+});
+roomClean.then(function(cleanOne){
+	console.log(cleanOne);
+})
+
+//rejectExample=====
+
+let roomClean1 = new Promise(function(resolve,reject){
+	let isClean = false;
+	if(isClean){
+		resolve();
+	}else{
+		reject("reject");
+	}
+});
+roomClean1.then(function(cleanOne){
+	console.log(cleanOne);
+})
+
+
+let cleanRoom = function(){
+	return new Promise(function(reject,resolve){
+		resolve("clean")
+	})
+}
+let cleanGarbage = function(message){
+	return new Promise(function(resolve,reject){
+		resolve(message + "remove Garbage")
+	})
+}
+let winIcream = function(message){
+	return new Promise(function(resolve,reject){
+		resolve(message + "winIcream")
+	})
+}
+cleanRoom().then(function(result){
+	return cleanGarbage(result)
+}).then(function(result){
+	return winIcream(result)
+}).then(function(result){
+	//return result;
+})
+//console.log("all clear" + result)
+
+//all finish
+promise.all([cleanRoom(),cleanGarbage (),winIcream ()]).then(function(){
+	//console.log("all done")
+})
+
+//at list one finish
+promise.race([cleanRoom(),cleanGarbage (),winIcream ()]).then(function(){
+	//console.log("all done")
+})
+
+//================================Closer===================
+var add = function(pass){
+	
+   var inner = 2
+	
+   return inner+pass;
+
+}
+
+console.log(add(2))
+
+var pass = 3
+
+var add = function(){
+
+  var inner = 2
+	return inner+pass;
+
+}
+console.log(add())	
+
+var addTo = function(pass){
+	
+	var add = function(inner){
+	
+	return pass+inner;
+	
+}
+	return add
+
+}
+
+//console.log(addTo(4))
+
+	
+//===============prototype Inheritance================
+//===========part1
+
+var x = function(j){
+	this.i = 0;
+	this.j = j;	
+	this.getJ = function(j){
+		return this.j;	
+	}
+}
+var x1 = new x("J");
+var x2 = new x("J2")
+//console.log(x1);
+//console.log(x2);
+
+
+var somedata = function(data1,data2){
+	this.data1 = data1;
+	this.data2 = data2;
+}
+somedata.prototype.getdata2 = function(){
+	return this.data2;	
+}
+var somenewdata = new somedata(1)
+var somenewdata1 = new somedata(1,2)
+//console.log(somenewdata.getdata2())
+//console.log(somenewdata1)
+
+//===========patr2
+
+//Base class
+var job = function(){
+	this.pays = true;
+}
+//prototype method
+job.prototype.print = function(){
+	console.log(this.pays ? "please hire me" : "No Thanks")	
+};
+
+//Subclass
+var techjob = function(title,pays){
+	job.call(this)
+	this.title =title;
+	this.pays = pays;
+}
+
+//techjob.prototype = object.create(job.prototype);
+//techjob.prototype.constructor = techjob;
+
+var softwereposition = new techjob("javascript programmer",true)
+var softwereposition1 = new techjob("javascript programmer",false)
+//console.log(softwereposition.print());
+//console.log(softwereposition1.print());
+
+</script>
+
+<script type="text/javascript">
+//===================factory function pattern
+
+	var peoplefactory = function(name,age,state){
+		//var temp = new object;
+		var temp = {};
+		temp.name = name;
+		temp.age = age;
+		temp.state = state;
+
+		temp.printPerson = function(){
+			console.log(this.name + ',' + this.age + ',' + this.state);
+		};
+		return temp;
+	};
+ 
+
+	var person1 = peoplefactory('Rakesh',23,'Noida')
+	//person1.printPerson()
+
+//================Contruction function pattern
+
+var peoplefactory = function(name,age,state){
+		this.name = name;
+		this.age = age;
+		this.state = state;
+
+		this.printPerson = function(){
+			console.log(this.name + ',' + this.age + ',' + this.state);
+		};
+		
+	};
+var peoplefactory1 = new peoplefactory('Rakesh1',231,'Noida1')
+//peoplefactory1.printPerson();
+
+//======================prototype function pattern
+
+var peopleProto = function(){
+
+}
+peopleProto.prototype.age = 0;
+peopleProto.prototype.name = "No name";
+peopleProto.prototype.city = "No City"; 
+
+//peopleProto.prototype.printDetail(){
+	//console.log(this.name+","+this.age+","+this.city)
+//}
+var person1 = new peopleProto();
+person1.name="Rakesh";
+person1.age=40;
+person1.city="Noida";
+
+//person1.printDetail()
+
+
+//=========================CallBack Function
+let cal = function(num1,num2,caltype){
+	if(caltype === "add"){
+		return num1+num2;
+	}else if(caltype === "multiply"){
+		return num1*num2
+	}	
+}
+//console.log(cal(2,3,"add"))
+//console.log(cal(2,3,"multiply"))
+
+
+var myarr = [{num:5,str:"apple"},{num:7,str:"banana"},{num:3,str:"papaya"}]
+
+myarr.sort(function(val1,val2){
+	if(val1.num > val2.num){
+		return 1
+	}else{
+		return -1		
+	}
+
+})
+//console.log(myarr)
+
+
+//=====================call apply and bind in javascript
+
+var obj = {num:2};
+
+var addToThis = function(a){
+	return this.num + a;
+}
+
+//console.log(addToThis.call(obj,3));
+
+//======================Apply in javascript
+var obj = {num:2};
+var addToThis = function(a,b,c){
+	return this.num + a + b + c;
+}
+
+var arrr = [1,2,3]
+//console.log(addToThis.apply(obj,arrr));
+
+//=====================Bind function in javascript
+var obj = {num:2};
+var addToThis = function(a,b,c){
+	return this.num + a + b + c;
+}
+
+var bound = addToThis.bind(obj);
+//console.log(bound(2,3,4))
+
+//=============Class function
+
+class Car ={
+	constructor(color){
+		this.color = color;
+	}
+	// getClor(){//method function return to overwrite outer function
+	// 	return this.color;
+	// }
+}
+
+
+//Method1
+object.defineProperty(Car.prototype,'getClor',{
+	value:function(){
+		return this.color;
+	},
+	writable:false,
+	configurable:true,
+	enumerable:true;
+})
+
+
+// second method
+let descriptor{
+	value:function(){
+		return this.color;
+	},
+	writable:false,
+	configurable:true,
+	enumerable:true;
+}
+
+let readonly(target,key,descriptor){
+	descriptor.writable = false;
+	return descriptor;
+}
+
+descriptor = readonly(Car.prototype,'getClor',descriptor)
+object.defineProperty(Car.prototype,'getClor',descriptor)
+
+
+
+
+
+const redCar = new Car('red')
+
+redCar.getClor = function(){
+	return 'bla bla!'
+}
+
+console.log(redCar.getClor());
+
+
+
+//Javascript Extended class Methos1
+
+class Mammal{
+	constructor(_legs,_name="Rakesh"){
+		this._legs = _legs;
+		this._name = _name;
+		this.warmWood = true;
+	},
+	walk(){
+		return this.name;
+	}
+}
+
+class Bat extends Mammal{
+	constructor(_legs,_name,_eatsMeat){
+		super(_legs,_name);
+		this._eatsMeat = _eatsMeat;
+	}
+	fly(){
+		return this.name;
+	}
+}
+
+let newFruit = new Bat(4,'peter',false);
+console.log(newFruit)
+
+//================Method 2
+
+class Mammal{
+	constructor(a,b,c,d,e){
+		Object.assign(this,{a,b,c,d,e});
+	}
+
+}
+class Bat extends Mammal{
+	constructor(f,...args){
+		super(...args);
+		this.f = f;
+	}
+}
+
+//========================Javascript  Decorator
+//1 class Decorator
+//2 property discriptor Decorator
+
+//Example:
+
+let someColor = function(target){ //target meang which aurgement get target
+	target.some = 'pink'
+}
+
+@someColor //this is decorator.
+class usecolor{
+
+}
+console.log(`some color are ${usecolor.some}`);
+
+
+//second method
+let lisptick = function(color){
+	return function(target){
+		target.lips = color;
+	}
+}
+let earrings = function(target){
+	target.hasEaring = true;
+}
+
+@earrings(); 
+@lisptick('black')
+
+class girl{
+
+}
+console.log(`some color are ${girl.lips}`);
+
+
+// Async Await function======
+
+console.log('result first');
+console.log('result Second');
+
+const preMovie = async()=>{
+	const promissSomething = new promise((resolve,reject)=>{
+		setTimeout()=>(resolve('all Problem'),1000)
+	});
+
+	let AllProblem = await promissSomething ;
+	return AllProblem;
+
+}
+
+preMovie.then((m)=> console.log(m));
+
+console.log('result Third');
+console.log('result Four');
+
+
+//Result is
+//console 1
+//console 2
+//console 3
+//console 4
+//at last all problem
+
+//Chain prototype in javascript==========
+
+var Car = function(){
+	Car.prototype = {
+		print:function(){
+			return 'firt chain';
+		}
+	}
+}
+
+let toyCar =function(){
+
+}
+
+toyCar.prototype = Object.create(Car.prototype)
+
+toyCar.prototype.print = function(){
+	return 'i m toyCar'
+}
+ let transform = function(){
+
+ }
+transform.prototype = Object.create(toyCar.prototype);
+
+transform.prototype.print = function(){
+	return 'i m transform'
+}
+
+let toyata1 = new Car();
+let toyCar1 = new toyCar();
+let transform1 = new transform();
+
+console.log(toyata1.print());
+console.log(toyCar1.print());
+console.log(transform1.print());
+
+//Javascript pass by value and pass by refrences=============
+
+let a = 1;
+
+let change = function(val){
+	val=2;
+}
+change(a);
+console.log(a); //output = 1
+
+let b = {num:2};
+let change1 = function(val){
+	val = {};//if pass blank object not change any refrance value
+}
+change(a);
+console.log(a) //output = 2
+
+let b = {num:2};
+let change1 = function(val){
+	val.num = 3;
+}
+change(a);
+console.log(a) //output = 3
+
+
+//Mixin in javascript=================
+
+const jsSkill = {
+	knowJs(){
+		return true;
+	}
+}
+const javaSkill = {
+	knowJava(){
+		return true
+	}
+}
+
+const jsEngineer = Object.assign({},jsSkill,javaSkill);
+console.log(jsEngineer);
+
+
+//Javascript object.assign===========================
+const toyota = {
+	drive(){
+		return 'Driving Toyata';
+	},
+	braek(){
+		return 'Break Toyata';
+	}
+}
+
+const camry = {
+	wifi(){
+		return 'wifi';
+	}
+}
+
+Object.assign(cammy,toyota)
+console.dir(cammy)
+
+//Same as setPrototypeOf method
+Object.setPrototypeOf(cammy,toyota)
+console.dir(cammy)
+
+
+// out put
+//drive
+//break
+//wifi all property coppied
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
